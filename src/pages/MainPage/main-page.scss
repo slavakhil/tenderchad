@@ -1,0 +1,30 @@
+.main-page {
+  display: flex;
+  width: 100%;
+}
+
+@media screen and (max-width: 1440px) {
+  .main-page {
+    width: 1024px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  // x < 1024
+  .main-page {
+    width: 100%;
+    min-width: 952px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  // x < 480
+  .main-page {
+    width: 100%;
+    min-width: 288px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

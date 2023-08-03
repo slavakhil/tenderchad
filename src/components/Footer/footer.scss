@@ -1,0 +1,26 @@
+@import '../../styles/colors.scss';
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-black;
+  height: 43px;
+  padding: 20px 0 20px 0;
+
+  .footer-container {
+    width: 1440px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: $color-white;
+    @media screen and (max-width: 1440px) {
+      width: 952px;
+    }
+    @media screen and (max-width: 1024px) {
+      padding-left: 16px;
+      padding-right: 16px;
+      width: 100%;
+    }
+  }
+}

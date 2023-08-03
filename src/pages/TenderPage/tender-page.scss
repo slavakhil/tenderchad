@@ -1,0 +1,373 @@
+@import '../../styles/colors.scss';
+
+.tender-page-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 180px);
+  .loading-block {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.tender-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  animation: ani 0.5s forwards;
+  margin-top: 30px;
+  @keyframes ani {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  .tender-page__back {
+    width: 1440px;
+    margin-bottom: 30px;
+    .tender-page__back-btn {
+      align-self: flex-start;
+      width: 152px;
+    }
+  }
+  .tender-page-card {
+    display: flex;
+    flex-direction: row;
+    border-radius: 16px;
+    background-color: $color-white;
+    margin-bottom: 30px;
+    text-decoration: none;
+    width: 1440px;
+    .card-info {
+      display: flex;
+      flex-direction: column;
+      padding: 30px 0px 30px 30px;
+      width: 1054px;
+
+      .info-main {
+        padding-bottom: 20px;
+        border-right: 1px solid $color-light-gray;
+        display: flex;
+        flex-direction: column;
+        .info-main__first {
+          margin-bottom: 8px;
+          .main-info__federal {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 20px;
+            color: $color-blue;
+          }
+        }
+        .info-main__second {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          padding-right: 50px;
+          .main-info__number-tender {
+            font-weight: 700;
+            font-size: 26px;
+            line-height: 32px;
+            color: $color-black;
+          }
+          .info-main__date {
+            display: flex;
+            flex-direction: row;
+            font-size: 16px;
+            line-height: 20px;
+            &:last-child:not(:only-child) {
+              margin-right: 0;
+            }
+            .date__label {
+              font-weight: 500;
+              color: $color-gray;
+              margin-right: 10px;
+            }
+            .date__data {
+              font-weight: 600;
+              color: $color-black;
+            }
+          }
+        }
+      }
+      .info-main-extend {
+        display: flex;
+        flex-direction: column;
+        padding-right: 30px;
+        border-right: 1px solid $color-light-gray;
+        .info-main-extend__element {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 16px;
+          &:last-child:not(:only-child) {
+            margin-bottom: 0;
+          }
+          .info-label {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 17px;
+            color: $color-gray;
+            margin-bottom: 8px;
+          }
+          .info-data {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 20px;
+            color: $color-black;
+          }
+        }
+      }
+    }
+    .card-price {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex: 0 0 334px;
+      color: $color-black;
+      .price-label {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 4px;
+      }
+      .price-data {
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 32px;
+      }
+    }
+  }
+  .tender-page-container-documents {
+    display: flex;
+    flex-direction: column;
+    background-color: $color-white;
+    width: 1380px;
+    padding: 30px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    .container-documents-header {
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 27px;
+      color: $color-black;
+      margin-bottom: 30px;
+    }
+    .container-documents-list {
+      display: flex;
+      flex-direction: column;
+      .document__element {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border-bottom: 1px solid $color-light-gray;
+        padding-bottom: 20px;
+        padding-top: 20px;
+        &:first-child:not(:only-child) {
+          padding-top: 0;
+        }
+        &:last-child:not(:only-child) {
+          border-bottom: none;
+          padding-bottom: 0;
+        }
+        .document-name {
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 20px;
+          color: $color-black;
+          width: calc(100% - 240px);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .document-download-btn {
+          width: 169px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .tender-page {
+    .tender-page__back {
+      width: 952px;
+    }
+    .tender-page-card {
+      width: 952px;
+      .card-info {
+        .info-main {
+          padding-bottom: 16px;
+          .info-main__first {
+            margin-bottom: 5px;
+          }
+          .info-main__second {
+            align-items: flex-start;
+            flex-direction: column;
+            padding-right: 0;
+            .main-info__number-tender {
+              font-size: 26px;
+              line-height: 32px;
+              margin-bottom: 10px;
+            }
+            .info-main__date {
+              margin-bottom: 10px;
+              &:last-child:not(:only-child) {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+    .tender-page-container-documents {
+      width: 892px;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .tender-page {
+    padding-left: 16px;
+    padding-right: 16px;
+    .tender-page__back {
+      width: 100%;
+    }
+    .tender-page-card {
+      flex-direction: column;
+      min-width: 736px;
+      width: 100%;
+      .card-info {
+        padding: 30px;
+        max-width: calc(100% - 60px);
+        width: 100%;
+        .info-main {
+          border-right: none;
+          .info-main__second {
+            .info-main__date {
+              .date__data {
+                font-weight: 600;
+                min-width: 80px;
+              }
+            }
+          }
+        }
+        .info-main-extend {
+          padding-right: 0;
+          border-right: none;
+          padding-bottom: 30px;
+          border-bottom: 1px solid $color-light-gray;
+        }
+      }
+      .card-price {
+        flex: 0 0 auto;
+        padding-bottom: 30px;
+      }
+    }
+    .tender-page-container-documents {
+      min-width: 636px;
+      width: calc(100% - 60px);
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tender-page {
+    .tender-page-card {
+      min-width: 448px;
+      .card-info {
+        padding: 30px 20px;
+        max-width: calc(100% - 40px);
+        .info-main {
+          .info-main__first {
+            margin-bottom: 10px;
+          }
+          .info-main__second {
+            .main-info__number-tender {
+              font-size: 16px;
+              line-height: 20px;
+              margin-bottom: 16px;
+            }
+            .info-main__date {
+              font-size: 14px;
+              line-height: 17px;
+              .date__data {
+                font-weight: 500;
+              }
+            }
+          }
+        }
+        .info-main-extend {
+          .info-main-extend__element {
+            .info-label {
+              margin-bottom: 4px;
+            }
+            .info-data {
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 17px;
+            }
+          }
+        }
+      }
+      .card-price {
+        .price-label {
+          font-size: 14px;
+          line-height: 17px;
+          margin-bottom: 12px;
+        }
+        .price-data {
+          font-size: 16px;
+          line-height: 20px;
+        }
+      }
+    }
+    .tender-page-container-documents {
+      min-width: 408px;
+      width: calc(100% - 40px);
+      padding: 30px 20px;
+      .container-documents-header {
+        font-size: 16px;
+        line-height: 20px;
+      }
+      .container-documents-list {
+        .document__element {
+          flex-direction: column;
+          justify-content: flex-start;
+          .document-name {
+            width: 100%;
+            margin-bottom: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .tender-page {
+    .tender-page-card {
+      min-width: 288px;
+      .card-info {
+        .info-main {
+          .info-main__first {
+            margin-bottom: 8px;
+            .main-info__federal {
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 17px;
+            }
+          }
+        }
+      }
+    }
+    .tender-page-container-documents {
+      min-width: 248px;
+    }
+  }
+}

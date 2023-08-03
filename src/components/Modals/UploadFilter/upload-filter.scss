@@ -1,0 +1,110 @@
+@import "../../../styles/colors.scss";
+
+.modal-upload-container {
+    width: 464px;
+    padding: 30px;
+    .modal-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        .modal-header__title {
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 27px;
+            color: $color-black;
+        }
+        .modal-header__btn-close {
+            cursor: pointer;
+        }
+    }
+    .modal-content {
+        .modal-content__label {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 20px;
+            color: $color-black;
+            margin-bottom: 30px;
+        }
+        .modal-content__input {
+            margin-bottom: 30px;
+        }
+        .modal-content__btns {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            .modal-content__btn-upload {
+                width: 238px;
+                height: 51px;
+            }
+            .modal-content__btn-remove {
+                height: 17px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .modal-upload-container {
+        width: 408px;
+        padding: 33px 16px 30px 16px;
+        .modal-header {
+            margin-bottom: 13px;
+            .modal-header__title {
+                font-size: 16px;
+                line-height: 20px;
+            }
+        }
+        .modal-content {
+            .modal-content__label {
+                font-size: 14px;
+                line-height: 17px;
+            }
+            .modal-content__btns {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                .modal-content__btn-upload {
+                    width: 238px;
+                    height: 51px;
+                }
+                .modal-content__btn-remove {
+                    height: 17px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .modal-upload-container {
+        width: 256px;
+        padding: 33px 16px 30px 16px;
+        .modal-header {
+            margin-bottom: 13px;
+            .modal-header__title {
+                font-size: 16px;
+                line-height: 20px;
+            }
+        }
+        .modal-content {
+            .modal-content__btns {
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                .modal-content__btn-upload {
+                    width: 256px;
+                    height: 51px;
+                    margin-bottom: 20px;
+                }
+                .modal-content__btn-remove {
+                    width: 170px;
+                    height: 17px;
+                }
+            }
+        }
+    }
+}

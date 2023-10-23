@@ -20,6 +20,7 @@ export interface IInput {
   disabled?: boolean;
   onHandleChange: (newFilter: any) => void;
   maxLength?: number;
+  error?: string;
 }
 
 export interface IInputDate extends IInput {

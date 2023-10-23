@@ -5,8 +5,10 @@ import {
 import { ReactComponent as CloseIcon } from '../../../assets/icons/close.svg';
 
 import './error-message.scss';
+import { useNavigate } from 'react-router-dom';
 
 export const ErrorMessage: React.FC = () => {
+  const navigate = useNavigate()
   return (
     <div className="modal-error-container">
       <div className="modal-header">
@@ -15,6 +17,7 @@ export const ErrorMessage: React.FC = () => {
           className="modal-header__btn-close"
           onClick={() => {
             setErrorServerMessage(false);
+            navigate('/')
             document.body.style.overflowY = 'auto';
           }}
         />

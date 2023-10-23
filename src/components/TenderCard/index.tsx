@@ -15,9 +15,9 @@ export const TenderCard: React.FC<ITenderCard> = ({ tender }) => {
       <div
         className={`card-color ${
           tender.relevance !== undefined
-            ? tender.relevance > 0.7
+            ? tender.relevance > 0.18
               ? 'green'
-              : tender.relevance > 0.15
+              : tender.relevance > 0.05
               ? 'yellow'
               : 'red'
             : ''

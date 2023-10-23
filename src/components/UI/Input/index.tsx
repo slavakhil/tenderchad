@@ -3,7 +3,6 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './input.scss';
 import { IInput, IInputDate } from '../../../types/models';
-import { removeSigns } from '../../../utils/functions';
 
 export const Input: React.FC<IInput> = ({
   name,
@@ -13,17 +12,34 @@ export const Input: React.FC<IInput> = ({
   onHandleChange,
   maxLength,
   type,
-}) => (
-  <input
-    className="input-field"
-    type={type}
-    maxLength={maxLength}
-    value={value === null ? '' : value}
-    placeholder={placeholder}
-    onChange={(e) => onHandleChange(e.target.value)}
-    disabled={disabled}
-  />
-);
+  error
+}) => {
+  const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
+  const showPassword = () => {
+    setIsShowPassword(!isShowPassword);
+  };
+  return (
+    <div className="password">
+      <input
+        className={`input-field ${error ? 'error' : ''}`}
+        type={
+          type === 'password' ? (isShowPassword ? 'text' : 'password') : type
+        }
+        maxLength={maxLength}
+        value={value === null ? '' : value}
+        placeholder={placeholder}
+        onChange={(e) => onHandleChange(e.target.value)}
+        disabled={disabled}
+      />
+      {type === 'password' && (
+        <div
+          onClick={showPassword}
+          className={`password-control ${isShowPassword ? 'view' : ''}`}
+        ></div>
+      )}
+    </div>
+  );
+};
 
 export const InputPrice: React.FC<IInput> = ({
   value,

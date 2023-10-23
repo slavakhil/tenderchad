@@ -2,6 +2,7 @@ import axios from 'axios';
 import { ITechsAndSuppliers, ITendersList } from '../../types/models';
 import { suppliers, tags } from '../../data';
 import { $api } from '../http';
+import { setErrorServerMessage } from '../../store/errors';
 
 export default class SearchTendersService {
   static async getTechsAndSuppliers() {
@@ -9,11 +10,19 @@ export default class SearchTendersService {
       .get<ITechsAndSuppliers>(
         `${process.env.REACT_APP_API_URL}/get-techs-and-suppliers`,
       )
-      .then((res) => res.data);
+      .then((res) => {
+        if (res.status === 204) {
+          setErrorServerMessage(true);
+          return {
+            suppliers: [],
+            techs: [],
+          };
+        } else return res.data;
+      });
   }
 
   static async getSuppliers() {
-    return await $api
+    return await axios
       .get(`${process.env.REACT_APP_API_URL}/get-suppliers/`)
       .then((res) => res.data);
     //.catch(() => suppliers);
@@ -107,6 +116,7 @@ export default class SearchTendersService {
         `${process.env.REACT_APP_API_URL}/result?id=${key.data}`,
       )
       .then((res) => {
+        console.log(res);
         return {
           link: res.data.link,
           length: res.data.length,

@@ -28,10 +28,16 @@
     .container-form {
       .container-input {
         width: 464px;
-        height: 51px;
         margin-bottom: 24px;
       }
+      .input-error {
+        padding-left: 22px;
+        padding-top: 10px;
+        margin-bottom: 24px;
+        color: $color-red;
+      }
       .container-checkbox {
+        width: 176px;
         padding-top: 6px;
         margin-bottom: 30px;
       }

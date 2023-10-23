@@ -65,3 +65,15 @@ $api.interceptors.response.use(
     throw error;
   },
 );
+
+// $api.interceptors.response.use(
+//   (config) => {
+//     return config;
+//   },
+//   async (error) => {
+//     if (error.response.status == 429) {
+//       setErrorServerMessage(true);
+//     }
+//     throw error;
+//   },
+// );

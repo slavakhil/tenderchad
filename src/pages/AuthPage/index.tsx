@@ -23,6 +23,8 @@ const AuthPage: React.FC = () => {
   const onHandleClickCheckbox = () => {
     setIsRemember(!isRemember);
   };
+  const [emailError, setEmailError] = useState<string>('');
+  // const authError = useStore($authError);
 
   const { username, password } = authData;
 
@@ -37,26 +39,38 @@ const AuthPage: React.FC = () => {
       else navigate('/');
     });
   }, []);
-  const onChangeUsername = (data: string) =>
+  const onChangeUsername = (data: string) => {
+    setEmailError('');
+    // setAuthError('');
     setAuthData({ ...authData, username: data });
+  };
   const onChangePassword = (data: string) =>
     setAuthData({ ...authData, password: data });
 
+  const EMAIL_REGEXP =
+    /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+
+  const isEmailValid = (value: string) => {
+    return EMAIL_REGEXP.test(value);
+  };
+
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    setIsLogining(true);
     e.preventDefault();
-    const hashed = {
-      username: bcrypt.hashSync(username, 10),
-      password: bcrypt.hashSync(password, 10),
-    };
-    // loginFx({ username: hashed.username, password: hashed.password, remember_me: isRemember }).finally(() =>
-    //   setIsLogining(false),
-    // );
-    loginFx({
-      username: username,
-      password: password,
-      remember_me: isRemember,
-    }).finally(() => setIsLogining(false));
+    if (isEmailValid(username)) {
+      setIsLogining(true);
+      const hashed = {
+        username: bcrypt.hashSync(username, 10),
+        password: bcrypt.hashSync(password, 10),
+      };
+      // loginFx({ username: hashed.username, password: hashed.password, remember_me: isRemember }).finally(() =>
+      //   setIsLogining(false),
+      // );
+      loginFx({
+        username: username,
+        password: password,
+        remember_me: isRemember,
+      }).finally(() => setIsLogining(false));
+    } else setEmailError('INCORRECT_EMAIL');
   };
 
   return (
@@ -70,8 +84,14 @@ const AuthPage: React.FC = () => {
               value={username}
               name="email"
               onHandleChange={onChangeUsername}
-              type="email"
+              type="text"
+              error={emailError}
             />
+            {emailError === 'INCORRECT_EMAIL' && (
+              <div className="input-error">
+                Электронная почта введена некорректно
+              </div>
+            )}
           </div>
           <div className="container-input">
             <Input
@@ -90,6 +110,12 @@ const AuthPage: React.FC = () => {
               onHandleClick={onHandleClickCheckbox}
             />
           </div>
+          {/* {authError === 'AUTH_ERROR' && (
+            <div className="input-error">
+              Неверная электронная почта или пароль
+            </div>
+          )} */}
+
           <div className="container-btn">
             <ButtonIcon
               title="Войти"

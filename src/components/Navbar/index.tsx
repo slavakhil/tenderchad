@@ -13,6 +13,8 @@ import closeSidebarIcon from '../../assets/icons/close-sidebar.svg';
 import { useStore } from 'effector-react';
 import { $user, logoutFx, setUser } from '../../store/auth-page';
 import { ButtonPrimary } from '../UI/Button';
+import { clearTenderList } from '../../store/search-store';
+import { clearTenderInfo } from '../../store/tender-store';
 
 export const NavBar: React.FC = () => {
   const user = useStore($user);
@@ -38,6 +40,8 @@ export const NavBar: React.FC = () => {
               <ButtonPrimary
                 title="Выйти"
                 onHandleClick={() => {
+                  clearTenderList();
+                  clearTenderInfo();
                   logoutFx().then(() => {
                     setUser({ isAuth: false, username: '' });
                     navigate('/auth');
@@ -87,7 +91,12 @@ export const NavBar: React.FC = () => {
                   <div
                     className="nav-link"
                     onClick={() => {
-                      logoutFx();
+                      clearTenderList();
+                      clearTenderInfo();
+                      logoutFx().then(() => {
+                        setUser({ isAuth: false, username: '' });
+                        navigate('/auth');
+                      });
                     }}
                   >
                     Выйти из аккаунта

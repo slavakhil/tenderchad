@@ -1,9 +1,17 @@
-import { createStore, createEffect, createEvent } from 'effector';
+import { createStore, createEffect, createEvent, sample } from 'effector';
 
 import localforage from 'localforage';
 import { AuthService } from '../api';
 import { ILogin, IUser } from '../types/models';
+import { clearTenderList } from './search-store';
+import { clearTenderInfo } from './tender-store';
 
+// export const setAuthError = createEvent<string>();
+
+// export const $authError = createStore<string>('').on(
+//   setAuthError,
+//   (_, error) => error,
+// );
 
 export const loginFx = createEffect({
   handler: async ({ username, password, remember_me }: ILogin) => {
@@ -11,6 +19,7 @@ export const loginFx = createEffect({
       const response = await AuthService.login(username, password, remember_me);
       return response.data; // Возвращаем данные из ответа API
     } catch (error) {
+      // setAuthError('AUTH_ERROR')
       console.error('Error during login:', error);
       return null;
     }

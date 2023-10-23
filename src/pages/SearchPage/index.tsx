@@ -3,6 +3,7 @@ import { TitlePage } from '../../components/UI/TitlePage';
 import './search-page.scss';
 import { useStore } from 'effector-react';
 import {
+  $techs_suppl,
   $tendersList,
   getSavedFiltersFx,
   getTechsAndSuppliersFx,
@@ -15,13 +16,16 @@ import { Loader, PageLoader } from '../../components/UI/Loader';
 
 const SearchPage: React.FC = () => {
   const tendersList = useStore($tendersList);
+  const techs_suppl = useStore($techs_suppl);
   const [isTechsAndSuppliersLoading, setIsTechsAndSuppliersLoading] =
     useState<boolean>(true);
 
   useEffect(() => {
-    getTechsAndSuppliersFx().finally(() =>
-      setIsTechsAndSuppliersLoading(false),
-    );
+    if (techs_suppl.techs.length === 0 || techs_suppl.suppliers.length === 0)
+      getTechsAndSuppliersFx().finally(() =>
+        setIsTechsAndSuppliersLoading(false),
+      );
+    else setIsTechsAndSuppliersLoading(false);
     getSavedFiltersFx();
   }, []);
 
